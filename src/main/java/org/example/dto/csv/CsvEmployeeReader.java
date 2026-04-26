@@ -9,7 +9,26 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Реализация читателя данных сотрудников из CSV-файла.
+ * <p>
+ * Использует библиотеку OpenCSV для парсинга CSV с разделителем ';'
+ * и автоматического маппинга на {@link CsvEmployee}.
+ *
+ * @see CsvEmployee
+ * @see EmployeeReader
+ */
+@SuppressWarnings("javadoc")
 public class CsvEmployeeReader implements EmployeeReader {
+
+    /**
+     * Считывает данные сотрудников из CSV-файла.
+     *
+     * @param resourcePath путь к CSV-файлу в classpath (resources)
+     * @return список объектов {@link CsvEmployee} с данными из файла
+     * @throws IllegalStateException если файл не найден в classpath
+     * @throws RuntimeException    если произошла ошибка при парсинге CSV
+     */
     @Override
     public List<CsvEmployee> readData(String resourcePath) {
         try (var inputStream = getClass().getClassLoader().getResourceAsStream(resourcePath)) {
