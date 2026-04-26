@@ -1,7 +1,5 @@
 package org.example.dto.csv;
 
-import org.example.dto.csv.CsvEmployee;
-import org.example.dto.csv.CsvEmployeeReader;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -39,7 +37,7 @@ class CsvEmployeeReaderTest {
         List<CsvEmployee> employees = reader.readData("foreign_names.csv");
 
         // Then
-        CsvEmployee firstEmployee = employees.get(0);
+        CsvEmployee firstEmployee = employees.getFirst();
         assertEquals(28281, firstEmployee.getId());
         assertEquals("Aahan", firstEmployee.getName());
         assertEquals("Male", firstEmployee.getGender());
@@ -57,7 +55,7 @@ class CsvEmployeeReaderTest {
         //System.out.println(employees.get(3));
 
         // Then
-        CsvEmployee employee = employees.get(0);
+        CsvEmployee employee = employees.getFirst();
         assertNotNull(employee.getBirthDate());
         System.out.println(employee.getBirthDate());
         assertInstanceOf(LocalDate.class, employee.getBirthDate());
@@ -70,7 +68,7 @@ class CsvEmployeeReaderTest {
         List<CsvEmployee> employees = reader.readData("foreign_names.csv");
 
         // Then
-        CsvEmployee employee = employees.get(0);
+        CsvEmployee employee = employees.getFirst();
         assertEquals(4800.0, employee.getSalary());
     }
 
@@ -87,7 +85,7 @@ class CsvEmployeeReaderTest {
                 .toList();
 
         assertFalse(divisions.isEmpty());
-        assertTrue(divisions.size() >= 1);
+        assertTrue(!divisions.isEmpty());
     }
 
     @Test
